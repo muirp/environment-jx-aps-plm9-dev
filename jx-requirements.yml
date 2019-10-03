@@ -1,34 +1,83 @@
 autoUpdate:
   enabled: true
-  schedule: '0 0 * * *'
+  schedule: 0 0 * * *
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
-  project: ""
+  clusterName: jx-aps-plm9
+  environmentGitOwner: muirp
+  environmentGitPublic: true
+  externalDNSSAName: jx-aps-plm9-dn
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  kanikoSAName: jx-aps-plm9-ko
+  namespace: jx
+  project: aps-plm9
   provider: gke
-  zone: ""
-gitops: true
+  vaultName: jx-aps-plm9
+  vaultSAName: jx-aps-plm9-vt
+  zone: us-east1-c
 environments:
-- key: dev
-- key: staging
-- key: production
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: dev
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+gitops: true
 ingress:
-  domain: ""
-  externalDNS: false
+  cloud_dns_secret_name: external-dns-gcp-sa
+  domain: aps-plm9.jxaas.io
+  domainIssuerURL: https://jx-tenant-service-jx-staging.jenkins-x.live
+  externalDNS: true
+  namespaceSubDomain: -jx.
   tls:
     email: jenkins-x@cloudbees.com
     enabled: true
-    production: false
+    production: true
 kaniko: true
 secretStorage: vault
 storage:
+  backup:
+    enabled: true
+    url: gs://aps-plm9-backup
   logs:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://aps-plm9-lts
   reports:
     enabled: false
     url: ""
   repository:
     enabled: false
     url: ""
+vault:
+  bucket: aps-plm9-vault
+  key: jx-aps-plm9-crypto-key
+  keyring: jx-aps-plm9-keyring
+  name: jx-aps-plm9
+  serviceAccount: jx-aps-plm9-vt
+velero: {}
+versionStream:
+  ref: v0.0.4
+  url: https://github.com/cloudbees/arcalos-jenkins-x-versions.git
 webhook: prow

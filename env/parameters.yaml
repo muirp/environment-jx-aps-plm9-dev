@@ -1,0 +1,14 @@
+adminUser:
+  password: vault:jx-aps-plm9/adminUser:password
+  username: admin
+dashboardAuthID: vault:jx-aps-plm9:dashboardAuthID
+dashboardAuthOrg: arcalos-dashboard
+dashboardAuthSecret: vault:jx-aps-plm9:dashboardAuthSecret
+dashboardGrpchost: dex.jx
+enableDocker: false
+pipelineUser:
+  email: PIPELINE_GITHUB_EMAIL
+  token: vault:jx-aps-plm9/pipelineUser:token
+  username: muirp-owner
+prow:
+  hmacToken: vault:jx-aps-plm9/prow:hmacToken
